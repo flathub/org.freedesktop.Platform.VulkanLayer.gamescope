@@ -29,9 +29,6 @@ modules:
     config-opts:
       - -Dpipewire=enabled
       - -Dforce_fallback_for=stb
-    post-install:
-      - mv /usr/lib/extensions/vulkan/gamescope/bin/gamescope /usr/lib/extensions/vulkan/gamescope/bin/gamescope-brokey
-      - install -Dm755 gamescope /usr/lib/extensions/vulkan/gamescope/bin
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
@@ -137,10 +134,18 @@ modules:
   - name: metadata
     buildsystem: simple
     build-commands: 
+      # This is Not Great™, as we should be using post-install in the gamescope module to do this. 
+      # For some reason, though, it won't work, and not even setting ensure-writable lets it do its thing.
+      # So do this here, and we can take a look at it whenever. It's not a big deal.
+      - mv /usr/lib/extensions/vulkan/gamescope/bin/gamescope /usr/lib/extensions/vulkan/gamescope/bin/gamescope-brokey
+      - install -Dm755 gamescope /usr/lib/extensions/vulkan/gamescope/bin
+      
       - install -DCm644 ${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
       - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak
         ${FLATPAK_ID}
     sources:
       - type: file
         path: org.freedesktop.Platform.VulkanLayer.gamescope.metainfo.xml
-
+        
+      - type: file
+        path: gamescope
