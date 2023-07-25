@@ -32,8 +32,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: 7aef264dfcf81c5f303422d820b7e1ecf81568f3
-        tag: 3.11.51
+        commit: 318fd75952302fb8f121c0fc9a788f38c96a9dba
+        tag: 3.12.0
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -45,7 +45,7 @@ modules:
     cleanup:
       - /include
       - /lib/pkgconfig
-      - /lib/*.a  
+      - /lib/*.a
     modules:
       - name: stb
         buildsystem: simple
@@ -64,8 +64,8 @@ modules:
               url: https://api.github.com/repos/nothings/stb/commits?sha=master&per_page=1
               version-query: .[].sha
               timestamp-query: .[].commit.committer.date
-              url-query: '"https://github.com/nothings/stb/archive/" + $version + "/stb-"
-                + $version + ".tar.gz"'
+              url-query: '"https://github.com/nothings/stb/archive/" + $version +
+                "/stb-" + $version + ".tar.gz"'
         cleanup:
           - '*'
 
@@ -109,7 +109,7 @@ modules:
           - /lib/*.a
           - /share
           - /lib/pkgconfig
-    
+
       - name: benchmark
         buildsystem: cmake-ninja
         config-opts:
@@ -133,19 +133,20 @@ modules:
 
   - name: metadata
     buildsystem: simple
-    build-commands: 
+    build-commands:
       # This is Not Great™, as we should be using post-install in the gamescope module to do this. 
       # For some reason, though, it won't work, and not even setting ensure-writable lets it do its thing.
       # So do this here, and we can take a look at it whenever. It's not a big deal.
       - mv /usr/lib/extensions/vulkan/gamescope/bin/gamescope /usr/lib/extensions/vulkan/gamescope/bin/gamescope-brokey
       - install -Dm755 gamescope /usr/lib/extensions/vulkan/gamescope/bin
-      
-      - install -DCm644 ${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+
+      - install -DCm644 ${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo
+        ${FLATPAK_ID}.metainfo.xml
       - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak
         ${FLATPAK_ID}
     sources:
       - type: file
         path: org.freedesktop.Platform.VulkanLayer.gamescope.metainfo.xml
-        
+
       - type: file
         path: gamescope
