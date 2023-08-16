@@ -4,8 +4,8 @@ config-opts:
   - -Dsecure-rpc=false
 sources:
   - type: archive
-    url: https://xorg.freedesktop.org/archive/individual/xserver/xwayland-23.1.2.tar.xz
-    sha256: bd25d8498ee4d77874fda125127e2db37fc332531febc966231ea06fae8cf77f
+    url: https://xorg.freedesktop.org/archive/individual/xserver/xwayland-23.2.0.tar.xz
+    sha256: 7f33ec2a34de6e66ae1b7e44872c3a2146192872c719b9acf192814edbabd4c5
     x-checker-data:
       type: anitya
       project-id: 180949
