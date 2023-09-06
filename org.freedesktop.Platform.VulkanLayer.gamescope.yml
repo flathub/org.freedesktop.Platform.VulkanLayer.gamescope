@@ -1,7 +1,7 @@
 id: org.freedesktop.Platform.VulkanLayer.gamescope
-branch: '22.08'
+branch: '23.08'
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 build-extension: true
 separate-locales: false
