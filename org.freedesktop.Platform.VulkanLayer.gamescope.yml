@@ -32,8 +32,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: 22618ea0841158d0d0ff0f50a76ee24fbfa63893
-        tag: 3.12.3
+        commit: a8471d81b36ea1d9dc90a7d35f9ad0631feaf1ae
+        tag: 3.12.5
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -118,8 +118,8 @@ modules:
           - -DCMAKE_CXX_FLAGS=
         sources:
           - type: archive
-            url: https://github.com/google/benchmark/archive/refs/tags/v1.8.2.tar.gz
-            sha256: 2aab2980d0376137f969d92848fbb68216abb07633034534fc8c65cc4e7a0e93
+            url: https://github.com/google/benchmark/archive/refs/tags/v1.8.3.tar.gz
+            sha256: 6bc180a57d23d4d9515519f92b0c83d61b05b5bab188961f36ac7b06b0d9e9ce
             x-checker-data:
               type: anitya
               project-id: 229361
