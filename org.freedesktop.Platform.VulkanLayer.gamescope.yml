@@ -32,8 +32,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: a8471d81b36ea1d9dc90a7d35f9ad0631feaf1ae
-        tag: 3.12.5
+        commit: 05407167cd843ddb59f71d3209d7f8751e526ae5
+        tag: 3.13.0
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -57,8 +57,8 @@ modules:
             done
         sources:
           - type: archive
-            url: https://github.com/nothings/stb/archive/5736b15f7ea0ffb08dd38af21067c314d6a3aae9/stb-5736b15f7ea0ffb08dd38af21067c314d6a3aae9.tar.gz
-            sha256: d00921d49b06af62aa6bfb97c1b136bec661dd11dd4eecbcb0da1f6da7cedb4c
+            url: https://github.com/nothings/stb/archive/beebb24b945efdea3b9bba23affb8eb3ba8982e7/stb-beebb24b945efdea3b9bba23affb8eb3ba8982e7.tar.gz
+            sha256: 2fb3c1bb1d796f159c08ae7bfc230f7b257fcacbd393fa67ad0f66f32070f741
             x-checker-data:
               type: json
               url: https://api.github.com/repos/nothings/stb/commits?sha=master&per_page=1
