@@ -32,8 +32,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: a8471d81b36ea1d9dc90a7d35f9ad0631feaf1ae
-        tag: 3.12.5
+        commit: 31ad6917317e0cfaebb5088d9fa49833b7e0531c
+        tag: 3.13.3
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -59,13 +59,13 @@ modules:
           - type: archive
             url: https://github.com/nothings/stb/archive/5736b15f7ea0ffb08dd38af21067c314d6a3aae9/stb-5736b15f7ea0ffb08dd38af21067c314d6a3aae9.tar.gz
             sha256: d00921d49b06af62aa6bfb97c1b136bec661dd11dd4eecbcb0da1f6da7cedb4c
-            x-checker-data:
-              type: json
-              url: https://api.github.com/repos/nothings/stb/commits?sha=master&per_page=1
-              version-query: .[].sha
-              timestamp-query: .[].commit.committer.date
-              url-query: '"https://github.com/nothings/stb/archive/" + $version +
-                "/stb-" + $version + ".tar.gz"'
+            #x-checker-data:
+            #  type: json
+            #  url: https://api.github.com/repos/nothings/stb/commits?sha=master&per_page=1
+            #  version-query: .[].sha
+            #  timestamp-query: .[].commit.committer.date
+            #  url-query: '"https://github.com/nothings/stb/archive/" + $version +
+            #    "/stb-" + $version + ".tar.gz"'
         cleanup:
           - '*'
 
