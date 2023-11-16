@@ -59,6 +59,8 @@ modules:
           - type: archive
             url: https://github.com/nothings/stb/archive/5736b15f7ea0ffb08dd38af21067c314d6a3aae9/stb-5736b15f7ea0ffb08dd38af21067c314d6a3aae9.tar.gz
             sha256: d00921d49b06af62aa6bfb97c1b136bec661dd11dd4eecbcb0da1f6da7cedb4c
+            # The checker is disabled as gamescope uses stb_image_resize.h which is deprecated.
+            # If it starts depending on stb_image_resize2.h uncomment this.
             #x-checker-data:
             #  type: json
             #  url: https://api.github.com/repos/nothings/stb/commits?sha=master&per_page=1
