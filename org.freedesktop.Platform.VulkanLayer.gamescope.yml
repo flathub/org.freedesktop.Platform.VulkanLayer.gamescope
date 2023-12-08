@@ -24,8 +24,8 @@ modules:
       - --datarootdir=${FLATPAK_DEST}/share
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.376.tar.gz
-        sha256: 48d85dbf05650b2c382ffaadeb601cac1650f5a34ee5c452df8021af988ea090
+        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.377-2.tar.gz
+        sha256: e1e79c12b975298ade94a9cf3f76d24a07ef2d25aa0bf4eebaeac9328ce7a2a7
         x-checker-data:
           type: anitya
           project-id: 13577
@@ -51,8 +51,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: 183e632631eb401f8cf9cc98b92f40e0dbe7326b
-        tag: 3.13.9
+        commit: 9894245aa7a98063bf99fc78269d5d7a6f0a358b
+        tag: 3.13.17
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
