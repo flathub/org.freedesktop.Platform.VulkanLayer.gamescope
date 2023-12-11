@@ -7,8 +7,8 @@ config-opts:
   - -Dbackends=drm,libinput,x11
 sources:
   - type: archive
-    url: https://gitlab.freedesktop.org/wlroots/wlroots/-/archive/0.16.2/wlroots-0.16.2.tar.gz
-    sha256: f502959db8bc029e32f10a837b37257bb8c5ed269bceddf9492f0bb381bebf76
+    url: https://gitlab.freedesktop.org/wlroots/wlroots/-/archive/0.17.0/wlroots-0.17.0.tar.gz
+    sha256: 0db3bd4854c233409f881fa1ccd7936eee2f3633454a1dbdcaf834f49e231149
     x-checker-data:
       type: anitya
       project-id: 18357
@@ -23,8 +23,8 @@ modules:
       - --datarootdir=${FLATPAK_DEST}/lib/
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.376.tar.gz
-        sha256: 48d85dbf05650b2c382ffaadeb601cac1650f5a34ee5c452df8021af988ea090
+        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.377-2.tar.gz
+        sha256: e1e79c12b975298ade94a9cf3f76d24a07ef2d25aa0bf4eebaeac9328ce7a2a7
         x-checker-data:
           type: anitya
           project-id: 13577
@@ -33,3 +33,18 @@ modules:
     cleanup:
       - /lib/pkgconfig
 
+  - name: libdisplay-info
+    buildsystem: meson
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/0.1.1/libdisplay-info-0.1.1.tar.bz2
+        sha256: 51cdb0362882ca2af62532ab4d95e60d81e9890b339264719fd55f8e3945d695
+        x-checker-data:
+          type: anitya
+          project-id: 326668
+          stable-only: true
+          url-template: https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/$version/libdisplay-info-$version.tar.bz2
+     
