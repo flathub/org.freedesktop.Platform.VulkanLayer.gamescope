@@ -5,6 +5,7 @@ runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 build-extension: true
 separate-locales: false
+appstream-compose: false
 
 build-options:
   cflags: -I/usr/lib/extensions/vulkan/gamescope/include
@@ -18,11 +19,29 @@ build-options:
   strip: true
 
 modules:
+  - name: hwdata
+    config-opts:
+      - --datarootdir=${FLATPAK_DEST}/share
+    sources:
+      - type: archive
+        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.377-2.tar.gz
+        sha256: e1e79c12b975298ade94a9cf3f76d24a07ef2d25aa0bf4eebaeac9328ce7a2a7
+        x-checker-data:
+          type: anitya
+          project-id: 13577
+          stable-only: true
+          url-template: https://github.com/vcrhonek/hwdata/archive/refs/tags/v$version.tar.gz
+    post-install:
+      - mkdir -p -m 755 ${FLATPAK_DEST}/lib/pkgconfig
+      - install -m 644 ${FLATPAK_DEST}/share/pkgconfig/hwdata.pc ${FLATPAK_DEST}/lib/pkgconfig/
+
+    cleanup:
+      - /lib/pkgconfig
+
   - modules/libevdev.yml
   - modules/libinput.yml
   - modules/libseat.yml
   - modules/xwayland.yml
-  - modules/wlroots.yml
 
   - name: gamescope
     buildsystem: meson
@@ -32,45 +51,33 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: f1646ee01eb429caaaf130e7727dc3d024916e87
-        tag: 3.13.7
+        commit: 3e14ef9c37266b19ba77fbef467d1b8a77d827f2
+        tag: 3.13.19
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
           is-main-source: true
+
+      # Keep stb tracking https://github.com/ValveSoftware/gamescope/blob/master/subprojects/stb.wrap
+      - type: archive
+        url: https://github.com/nothings/stb/archive/5736b15f7ea0ffb08dd38af21067c314d6a3aae9/stb.tar.gz
+        sha256: d00921d49b06af62aa6bfb97c1b136bec661dd11dd4eecbcb0da1f6da7cedb4c
+        dest: subprojects/stb
+
       - type: shell
         commands:
-          - ln -s ${FLATPAK_DEST}/include/stb subprojects/stb
-          - install -Dm644 subprojects/packagefiles/stb/meson.build -t subprojects/stb/
+          - install -Dm644 subprojects/packagefiles/stb/meson.build -t subprojects/stb
+
     cleanup:
       - /include
       - /lib/pkgconfig
       - /lib/*.a
+      - /share/pkgconfig
+      - /share/applications
+      - /bin/di-edid-decode
+    post-install:
+      - mv ${FLATPAK_DEST}/bin/gamescope ${FLATPAK_DEST}/bin/gamescope-brokey
     modules:
-      - name: stb
-        buildsystem: simple
-        build-commands:
-          - |
-            set -e
-            for f in *.h; do
-              install -Dm644 $f -t ${FLATPAK_DEST}/include/stb/
-            done
-        sources:
-          - type: archive
-            url: https://github.com/nothings/stb/archive/5736b15f7ea0ffb08dd38af21067c314d6a3aae9/stb-5736b15f7ea0ffb08dd38af21067c314d6a3aae9.tar.gz
-            sha256: d00921d49b06af62aa6bfb97c1b136bec661dd11dd4eecbcb0da1f6da7cedb4c
-            # The checker is disabled as gamescope uses stb_image_resize.h which is deprecated.
-            # If it starts depending on stb_image_resize2.h uncomment this.
-            #x-checker-data:
-            #  type: json
-            #  url: https://api.github.com/repos/nothings/stb/commits?sha=master&per_page=1
-            #  version-query: .[].sha
-            #  timestamp-query: .[].commit.committer.date
-            #  url-query: '"https://github.com/nothings/stb/archive/" + $version +
-            #    "/stb-" + $version + ".tar.gz"'
-        cleanup:
-          - '*'
-
       - name: glm
         buildsystem: cmake-ninja
         no-make-install: true
@@ -136,12 +143,7 @@ modules:
   - name: metadata
     buildsystem: simple
     build-commands:
-      # This is Not Great™, as we should be using post-install in the gamescope module to do this. 
-      # For some reason, though, it won't work, and not even setting ensure-writable lets it do its thing.
-      # So do this here, and we can take a look at it whenever. It's not a big deal.
-      - mv /usr/lib/extensions/vulkan/gamescope/bin/gamescope /usr/lib/extensions/vulkan/gamescope/bin/gamescope-brokey
       - install -Dm755 gamescope /usr/lib/extensions/vulkan/gamescope/bin
-
       - install -DCm644 ${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo
         ${FLATPAK_ID}.metainfo.xml
       - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak
@@ -150,5 +152,12 @@ modules:
       - type: file
         path: org.freedesktop.Platform.VulkanLayer.gamescope.metainfo.xml
 
-      - type: file
-        path: gamescope
+      - type: script
+        dest-filename: gamescope
+        commands:
+          - |
+            #!/usr/bin/env bash
+            LD_LIBRARY_PATH=/usr/lib/extensions/vulkan/gamescope/lib:$LD_LIBRARY_PATH
+            PATH=/usr/lib/extensions/vulkan/gamescope/bin:$PATH
+
+            exec gamescope-brokey "$@"
