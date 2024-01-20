@@ -43,6 +43,18 @@ modules:
   - modules/libseat.yml
   - modules/xwayland.yml
 
+  - name: libavif
+    buildsystem: cmake-ninja
+    sources:
+      - type: git
+        url: https://github.com/AOMediaCodec/libavif.git
+        tag: v1.0.3
+        commit: ecf2dfc1ef2908e0f4ddb0fdc03dd8db831d8ae7
+        x-checker-data:
+          type: anitya
+          project-id: 178015
+          tag-template: v$version
+
   - name: gamescope
     buildsystem: meson
     config-opts:
