@@ -24,8 +24,8 @@ modules:
       - --datarootdir=${FLATPAK_DEST}/share
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.377-2.tar.gz
-        sha256: e1e79c12b975298ade94a9cf3f76d24a07ef2d25aa0bf4eebaeac9328ce7a2a7
+        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.378.tar.gz
+        sha256: 098ea8db12a50290f4b23f7f521edf9c5bab25935d2740de17e4a487110b40c8
         x-checker-data:
           type: anitya
           project-id: 13577
@@ -43,6 +43,18 @@ modules:
   - modules/libseat.yml
   - modules/xwayland.yml
 
+  - name: libavif
+    buildsystem: cmake-ninja
+    sources:
+      - type: git
+        url: https://github.com/AOMediaCodec/libavif.git
+        tag: v1.0.3
+        commit: ecf2dfc1ef2908e0f4ddb0fdc03dd8db831d8ae7
+        x-checker-data:
+          type: anitya
+          project-id: 178015
+          tag-template: v$version
+
   - name: gamescope
     buildsystem: meson
     config-opts:
@@ -51,8 +63,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: 3e14ef9c37266b19ba77fbef467d1b8a77d827f2
-        tag: 3.13.19
+        commit: bca7990e61a1eb8198e54d86a4a9a44d41d9b07e
+        tag: 3.14.0
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
