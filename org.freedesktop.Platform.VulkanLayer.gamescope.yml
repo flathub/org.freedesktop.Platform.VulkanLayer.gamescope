@@ -24,13 +24,13 @@ modules:
       - --datarootdir=${FLATPAK_DEST}/share
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.378.tar.gz
+        url: https://github.com/vcrhonek/hwdata/archive/v0.378/hwdata-0.378.tar.gz
         sha256: 098ea8db12a50290f4b23f7f521edf9c5bab25935d2740de17e4a487110b40c8
         x-checker-data:
           type: anitya
           project-id: 13577
           stable-only: true
-          url-template: https://github.com/vcrhonek/hwdata/archive/refs/tags/v$version.tar.gz
+          url-template: https://github.com/vcrhonek/hwdata/archive/v$version/hwdata-$version.tar.gz
     post-install:
       - mkdir -p -m 755 ${FLATPAK_DEST}/lib/pkgconfig
       - install -m 644 ${FLATPAK_DEST}/share/pkgconfig/hwdata.pc ${FLATPAK_DEST}/lib/pkgconfig/
@@ -100,12 +100,12 @@ modules:
           - cp glm.pc.in ${FLATPAK_DEST}/lib/pkgconfig/glm.pc
         sources:
           - type: archive
-            url: https://github.com/g-truc/glm/archive/refs/tags/0.9.9.8.tar.gz
+            url: https://github.com/g-truc/glm/archive/0.9.9.8/glm-0.9.9.8.tar.gz
             sha256: 7d508ab72cb5d43227a3711420f06ff99b0a0cb63ee2f93631b162bfe1fe9592
             x-checker-data:
               type: anitya
               project-id: 1181
-              url-template: https://github.com/g-truc/glm/archive/refs/tags/$version.tar.gz
+              url-template: https://github.com/g-truc/glm/archive/$version/glm-$version.tar.gz
           # Upstream hates packagers, so use a hack to make things work for us again.
           # https://web.archive.org/web/20201214023324/https://github.com/g-truc/glm/pull/968
           - type: file
@@ -139,12 +139,12 @@ modules:
           - -DCMAKE_CXX_FLAGS=
         sources:
           - type: archive
-            url: https://github.com/google/benchmark/archive/refs/tags/v1.8.3.tar.gz
+            url: https://github.com/google/benchmark/archive/v1.8.3/benchmark-1.8.3.tar.gz
             sha256: 6bc180a57d23d4d9515519f92b0c83d61b05b5bab188961f36ac7b06b0d9e9ce
             x-checker-data:
               type: anitya
               project-id: 229361
-              url-template: https://github.com/google/benchmark/archive/refs/tags/v$version.tar.gz
+              url-template: https://github.com/google/benchmark/archive/v$version/benchmark-$version.tar.gz
         cleanup:
           - /include
           - /lib/*.a
