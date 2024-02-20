@@ -24,8 +24,8 @@ modules:
       - --datarootdir=${FLATPAK_DEST}/share
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/v0.378/hwdata-0.378.tar.gz
-        sha256: 098ea8db12a50290f4b23f7f521edf9c5bab25935d2740de17e4a487110b40c8
+        url: https://github.com/vcrhonek/hwdata/archive/v0.379/hwdata-0.379.tar.gz
+        sha256: b98ef646d530d5fd3afa3180efbf7c8e22d3da0088f5836f41ee25380d87b092
         x-checker-data:
           type: anitya
           project-id: 13577
@@ -48,8 +48,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/AOMediaCodec/libavif.git
-        tag: v1.0.3
-        commit: ecf2dfc1ef2908e0f4ddb0fdc03dd8db831d8ae7
+        tag: v1.0.4
+        commit: d77cfece0b3e233ee4bed49dfef1e7dc451599f8
         x-checker-data:
           type: anitya
           project-id: 178015
@@ -63,8 +63,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: bca7990e61a1eb8198e54d86a4a9a44d41d9b07e
-        tag: 3.14.0
+        commit: f1cdbd1402717c8bf7e470c756620cae3b12301b
+        tag: 3.14.1
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -96,12 +96,12 @@ modules:
         post-install:
           - install -d ${FLATPAK_DEST}/include
           - cp -R glm ${FLATPAK_DEST}/include
-          - cp -R cmake/glm ${FLATPAK_DEST}/lib/cmake
+          - cp -R cmake ${FLATPAK_DEST}/lib/cmake
           - cp glm.pc.in ${FLATPAK_DEST}/lib/pkgconfig/glm.pc
         sources:
           - type: archive
-            url: https://github.com/g-truc/glm/archive/0.9.9.8/glm-0.9.9.8.tar.gz
-            sha256: 7d508ab72cb5d43227a3711420f06ff99b0a0cb63ee2f93631b162bfe1fe9592
+            url: https://github.com/g-truc/glm/archive/1.0.0/glm-1.0.0.tar.gz
+            sha256: e51f6c89ff33b7cfb19daafb215f293d106cd900f8d681b9b1295312ccadbd23
             x-checker-data:
               type: anitya
               project-id: 1181
