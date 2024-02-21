@@ -5,6 +5,7 @@ runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 build-extension: true
 separate-locales: false
+appstream-compose: false
 
 build-options:
   cflags: -I/usr/lib/extensions/vulkan/gamescope/include
@@ -18,11 +19,71 @@ build-options:
   strip: true
 
 modules:
+  - name: vulkan-headers
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.278/Vulkan-Headers-v1.3.278.tar.gz
+        sha256: 590cd0506be759972d0c714550c49bb90a1cc9c9e5337a10724bca6cdfd56dbe
+    cleanup:
+      - '*'
+
+  - name: wayland
+    buildsystem: meson
+    config-opts:
+      - -Dtests=false
+      - -Ddocumentation=false
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/wayland/wayland/-/releases/1.22.0/downloads/wayland-1.22.0.tar.xz
+        sha256: 1540af1ea698a471c2d8e9d288332c7e0fd360c8f1d12936ebb7e7cbc2425842
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share
+
+  - name: hwdata
+    config-opts:
+      - --datarootdir=${FLATPAK_DEST}/share
+    sources:
+      - type: archive
+        url: https://github.com/vcrhonek/hwdata/archive/v0.379/hwdata-0.379.tar.gz
+        sha256: b98ef646d530d5fd3afa3180efbf7c8e22d3da0088f5836f41ee25380d87b092
+        x-checker-data:
+          type: anitya
+          project-id: 13577
+          stable-only: true
+          url-template: https://github.com/vcrhonek/hwdata/archive/v$version/hwdata-$version.tar.gz
+    post-install:
+      - mkdir -p -m 755 ${FLATPAK_DEST}/lib/pkgconfig
+      - install -m 644 ${FLATPAK_DEST}/share/pkgconfig/hwdata.pc ${FLATPAK_DEST}/lib/pkgconfig/
+    cleanup:
+      - /lib/pkgconfig
+      - /share/aclocal
+      - /share/pkgconfig
+
   - modules/libevdev.yml
   - modules/libinput.yml
   - modules/libseat.yml
   - modules/xwayland.yml
-  - modules/wlroots.yml
+  - shared-modules/SDL2/SDL2-with-libdecor.json
+
+  - name: libavif
+    buildsystem: cmake-ninja
+    sources:
+      - type: git
+        url: https://github.com/AOMediaCodec/libavif.git
+        tag: v1.0.4
+        commit: d77cfece0b3e233ee4bed49dfef1e7dc451599f8
+        x-checker-data:
+          type: anitya
+          project-id: 178015
+          tag-template: v$version
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /lib/cmake
 
   - name: gamescope
     buildsystem: meson
@@ -32,59 +93,49 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: 22618ea0841158d0d0ff0f50a76ee24fbfa63893
-        tag: 3.12.3
+        commit: f1cdbd1402717c8bf7e470c756620cae3b12301b
+        tag: 3.14.1
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
           is-main-source: true
+
+      # Keep stb tracking https://github.com/ValveSoftware/gamescope/blob/master/subprojects/stb.wrap
+      - type: archive
+        url: https://github.com/nothings/stb/archive/5736b15f7ea0ffb08dd38af21067c314d6a3aae9/stb.tar.gz
+        sha256: d00921d49b06af62aa6bfb97c1b136bec661dd11dd4eecbcb0da1f6da7cedb4c
+        dest: subprojects/stb
+
       - type: shell
         commands:
-          - ln -s ${FLATPAK_DEST}/include/stb subprojects/stb
-          - install -Dm644 subprojects/packagefiles/stb/meson.build -t subprojects/stb/
+          - install -Dm644 subprojects/packagefiles/stb/meson.build -t subprojects/stb
+
     cleanup:
       - /include
       - /lib/pkgconfig
       - /lib/*.a
+      - /share/pkgconfig
+      - /share/applications
+      - /bin/di-edid-decode
+    post-install:
+      - mv ${FLATPAK_DEST}/bin/gamescope ${FLATPAK_DEST}/bin/gamescope-brokey
     modules:
-      - name: stb
-        buildsystem: simple
-        build-commands:
-          - |
-            set -e
-            for f in *.h; do
-              install -Dm644 $f -t ${FLATPAK_DEST}/include/stb/
-            done
-        sources:
-          - type: archive
-            url: https://github.com/nothings/stb/archive/5736b15f7ea0ffb08dd38af21067c314d6a3aae9/stb-5736b15f7ea0ffb08dd38af21067c314d6a3aae9.tar.gz
-            sha256: d00921d49b06af62aa6bfb97c1b136bec661dd11dd4eecbcb0da1f6da7cedb4c
-            x-checker-data:
-              type: json
-              url: https://api.github.com/repos/nothings/stb/commits?sha=master&per_page=1
-              version-query: .[].sha
-              timestamp-query: .[].commit.committer.date
-              url-query: '"https://github.com/nothings/stb/archive/" + $version +
-                "/stb-" + $version + ".tar.gz"'
-        cleanup:
-          - '*'
-
       - name: glm
         buildsystem: cmake-ninja
         no-make-install: true
         post-install:
           - install -d ${FLATPAK_DEST}/include
           - cp -R glm ${FLATPAK_DEST}/include
-          - cp -R cmake/glm ${FLATPAK_DEST}/lib/cmake
+          - cp -R cmake ${FLATPAK_DEST}/lib/cmake
           - cp glm.pc.in ${FLATPAK_DEST}/lib/pkgconfig/glm.pc
         sources:
           - type: archive
-            url: https://github.com/g-truc/glm/archive/refs/tags/0.9.9.8.tar.gz
-            sha256: 7d508ab72cb5d43227a3711420f06ff99b0a0cb63ee2f93631b162bfe1fe9592
+            url: https://github.com/g-truc/glm/archive/1.0.0/glm-1.0.0.tar.gz
+            sha256: e51f6c89ff33b7cfb19daafb215f293d106cd900f8d681b9b1295312ccadbd23
             x-checker-data:
               type: anitya
               project-id: 1181
-              url-template: https://github.com/g-truc/glm/archive/refs/tags/$version.tar.gz
+              url-template: https://github.com/g-truc/glm/archive/$version/glm-$version.tar.gz
           # Upstream hates packagers, so use a hack to make things work for us again.
           # https://web.archive.org/web/20201214023324/https://github.com/g-truc/glm/pull/968
           - type: file
@@ -118,12 +169,12 @@ modules:
           - -DCMAKE_CXX_FLAGS=
         sources:
           - type: archive
-            url: https://github.com/google/benchmark/archive/refs/tags/v1.8.2.tar.gz
-            sha256: 2aab2980d0376137f969d92848fbb68216abb07633034534fc8c65cc4e7a0e93
+            url: https://github.com/google/benchmark/archive/v1.8.3/benchmark-1.8.3.tar.gz
+            sha256: 6bc180a57d23d4d9515519f92b0c83d61b05b5bab188961f36ac7b06b0d9e9ce
             x-checker-data:
               type: anitya
               project-id: 229361
-              url-template: https://github.com/google/benchmark/archive/refs/tags/v$version.tar.gz
+              url-template: https://github.com/google/benchmark/archive/v$version/benchmark-$version.tar.gz
         cleanup:
           - /include
           - /lib/*.a
@@ -134,12 +185,7 @@ modules:
   - name: metadata
     buildsystem: simple
     build-commands:
-      # This is Not Great™, as we should be using post-install in the gamescope module to do this. 
-      # For some reason, though, it won't work, and not even setting ensure-writable lets it do its thing.
-      # So do this here, and we can take a look at it whenever. It's not a big deal.
-      - mv /usr/lib/extensions/vulkan/gamescope/bin/gamescope /usr/lib/extensions/vulkan/gamescope/bin/gamescope-brokey
       - install -Dm755 gamescope /usr/lib/extensions/vulkan/gamescope/bin
-
       - install -DCm644 ${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo
         ${FLATPAK_ID}.metainfo.xml
       - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak
@@ -148,5 +194,12 @@ modules:
       - type: file
         path: org.freedesktop.Platform.VulkanLayer.gamescope.metainfo.xml
 
-      - type: file
-        path: gamescope
+      - type: script
+        dest-filename: gamescope
+        commands:
+          - |
+            #!/usr/bin/env bash
+            LD_LIBRARY_PATH=/usr/lib/extensions/vulkan/gamescope/lib:$LD_LIBRARY_PATH
+            PATH=/usr/lib/extensions/vulkan/gamescope/bin:$PATH
+
+            exec gamescope-brokey "$@"
