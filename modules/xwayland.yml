@@ -14,7 +14,7 @@ sources:
 cleanup:
   - /lib/xorg
   - /lib/pkgconfig
-  - /share/man
+  - /share
 modules:
   - name: fontutil
     buildsystem: autotools
