@@ -105,8 +105,8 @@ modules:
           - cp glm.pc.in ${FLATPAK_DEST}/lib/pkgconfig/glm.pc
         sources:
           - type: archive
-            url: https://github.com/g-truc/glm/archive/1.0.0/glm-1.0.0.tar.gz
-            sha256: e51f6c89ff33b7cfb19daafb215f293d106cd900f8d681b9b1295312ccadbd23
+            url: https://github.com/g-truc/glm/archive/1.0.1/glm-1.0.1.tar.gz
+            sha256: 7f5aaf6bc5570b9b595e0735f0580ba576b6e173bb87543c796c32e7a054988c
             x-checker-data:
               type: anitya
               project-id: 1181
