@@ -108,9 +108,16 @@ modules:
             url: https://github.com/g-truc/glm/archive/1.0.0/glm-1.0.0.tar.gz
             sha256: e51f6c89ff33b7cfb19daafb215f293d106cd900f8d681b9b1295312ccadbd23
             x-checker-data:
-              type: anitya
-              project-id: 1181
-              url-template: https://github.com/g-truc/glm/archive/$version/glm-$version.tar.gz
+              type: json
+              url: https://api.github.com/repos/g-truc/glm/releases/latest
+              version-query: .tag_name
+              url-query: '"https://github.com/g-truc/glm/archive/" + $version + "/glm-"
+                + $version + ".tar.gz"'
+              # glm version 1.0.1 was causing multiple MRs to be opened during pre-release changes
+              # Maybe the initial pre-release was initially marked release and triggered the anitya record
+              #type: anitya
+              #project-id: 1181
+              #url-template: https://github.com/g-truc/glm/archive/$version/glm-$version.tar.gz
           # Upstream hates packagers, so use a hack to make things work for us again.
           # https://web.archive.org/web/20201214023324/https://github.com/g-truc/glm/pull/968
           - type: file
