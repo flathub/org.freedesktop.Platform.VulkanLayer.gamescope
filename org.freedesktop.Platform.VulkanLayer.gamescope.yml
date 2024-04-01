@@ -5,7 +5,6 @@ runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 build-extension: true
 separate-locales: false
-appstream-compose: false
 
 build-options:
   cflags: -I/usr/lib/extensions/vulkan/gamescope/include
@@ -170,8 +169,6 @@ modules:
       - install -Dm755 gamescope /usr/lib/extensions/vulkan/gamescope/bin
       - install -DCm644 ${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo
         ${FLATPAK_ID}.metainfo.xml
-      - appstream-compose --basename=${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak
-        ${FLATPAK_ID}
     sources:
       - type: file
         path: org.freedesktop.Platform.VulkanLayer.gamescope.metainfo.xml
