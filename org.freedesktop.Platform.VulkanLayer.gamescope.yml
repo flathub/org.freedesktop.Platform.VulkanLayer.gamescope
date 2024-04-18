@@ -67,8 +67,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: 377365c8e77740055960724b8ff074c0b71782ae
-        tag: 3.14.3
+        commit: f2fbab60e2f30d737fd3d9ff7ddb5720b023b619
+        tag: 3.14.4
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -129,8 +129,8 @@ modules:
       - name: xmu
         sources:
           - type: archive
-            url: https://www.x.org/archive/individual/lib/libXmu-1.2.0.tar.xz
-            sha256: 072026fe305889538e5b0c5f9cbcd623d2c27d2b85dcd37ca369ab21590b6963
+            url: https://www.x.org/archive/individual/lib/libXmu-1.2.1.tar.xz
+            sha256: fcb27793248a39e5fcc5b9c4aec40cc0734b3ca76aac3d7d1c264e7f7e14e8b2
             x-checker-data:
               type: anitya
               project-id: 1785
