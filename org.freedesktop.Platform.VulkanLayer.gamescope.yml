@@ -42,6 +42,7 @@ modules:
   - modules/libinput.yml
   - modules/libseat.yml
   - modules/xwayland.yml
+  - modules/libei.yml
 
   - name: libavif
     buildsystem: cmake-ninja
@@ -67,8 +68,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: f2fbab60e2f30d737fd3d9ff7ddb5720b023b619
-        tag: 3.14.4
+        commit: 6a73eddd699e9f831f0356d009da7e4bb1c13e7d
+        tag: 3.14.5
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
