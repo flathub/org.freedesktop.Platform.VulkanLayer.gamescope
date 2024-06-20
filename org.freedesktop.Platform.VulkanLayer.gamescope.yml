@@ -64,12 +64,12 @@ modules:
     buildsystem: meson
     config-opts:
       - -Dpipewire=enabled
-      - -Dforce_fallback_for=stb
+      - -Dforce_fallback_for=stb,wlroots,libliftoff,vkroots
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: 420eb91387a484fd7b1ea71449091f0480d9e538
-        tag: 3.14.18
+        commit: 40bd6a662b1a71019d1095204cb07f18842875f2
+        tag: 3.14.19
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
