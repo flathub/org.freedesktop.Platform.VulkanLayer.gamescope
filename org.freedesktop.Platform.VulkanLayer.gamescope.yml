@@ -68,14 +68,12 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: 88d6d6e6236003282b8febe336d441daef2289f3
-        tag: 3.14.20
+        commit: 650b0959a7677c89ea1395025ae9ebc84d982f0a
+        tag: 3.14.21
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
           is-main-source: true
-      - type: patch
-        path: version.patch
 
       # Keep stb tracking https://github.com/ValveSoftware/gamescope/blob/master/subprojects/stb.wrap
       - type: archive
