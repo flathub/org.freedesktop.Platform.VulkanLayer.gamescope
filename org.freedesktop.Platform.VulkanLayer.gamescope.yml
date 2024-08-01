@@ -18,6 +18,21 @@ build-options:
   strip: true
 
 modules:
+  - name: wayland
+    buildsystem: meson
+    config-opts:
+      - -Dtests=false
+      - -Ddocumentation=false
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/wayland/wayland/-/releases/1.23.0/downloads/wayland-1.23.0.tar.xz
+        sha256: 05b3e1574d3e67626b5974f862f36b5b427c7ceeb965cb36a4e6c2d342e45ab2
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share
+
   - name: hwdata
     config-opts:
       - --datarootdir=${FLATPAK_DEST}/share
@@ -46,11 +61,13 @@ modules:
 
   - name: libavif
     buildsystem: cmake-ninja
+    config-opts:
+      - -DAVIF_LIBYUV=OFF
     sources:
       - type: git
         url: https://github.com/AOMediaCodec/libavif.git
-        tag: v1.0.4
-        commit: d77cfece0b3e233ee4bed49dfef1e7dc451599f8
+        tag: v1.1.1
+        commit: bb24db03cd99befe09c87b602e36f24d75a980d1
         x-checker-data:
           type: anitya
           project-id: 178015
@@ -68,8 +85,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: cf2497fd7ec83f3d0dd5cb31b69540a2d129edad
-        tag: 3.14.24
+        commit: 85145df53a8b25e33dd2910e8dbf64a0cf6b1b5f
+        tag: 3.14.26
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -151,8 +168,8 @@ modules:
           - -DCMAKE_CXX_FLAGS=
         sources:
           - type: archive
-            url: https://github.com/google/benchmark/archive/v1.8.4/benchmark-1.8.4.tar.gz
-            sha256: 3e7059b6b11fb1bbe28e33e02519398ca94c1818874ebed18e504dc6f709be45
+            url: https://github.com/google/benchmark/archive/v1.8.5/benchmark-1.8.5.tar.gz
+            sha256: d26789a2b46d8808a48a4556ee58ccc7c497fcd4c0af9b90197674a81e04798a
             x-checker-data:
               type: anitya
               project-id: 229361
