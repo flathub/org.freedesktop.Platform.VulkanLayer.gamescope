@@ -5,13 +5,13 @@ config-opts:
   - -Ddocumentation=disabled
 sources:
   - type: archive
-    url: https://freedesktop.org/software/libevdev/libevdev-1.13.2.tar.xz
+    url: https://www.freedesktop.org/software/libevdev/libevdev-1.13.2.tar.xz
     sha256: 3eca86a6ce55b81d5bce910637fc451c8bbe373b1f9698f375c7f1ad0de3ac48
     x-checker-data:
       type: anitya
       project-id: 20540
       stable-only: true
-      url-template: https://freedesktop.org/software/libevdev/libevdev-$version.tar.xz
+      url-template: https://www.freedesktop.org/software/libevdev/libevdev-$version.tar.xz
 cleanup:
   - /bin
   - /include
