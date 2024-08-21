@@ -17,6 +17,26 @@ build-options:
   prepend-pkg-config-path: /usr/lib/extensions/vulkan/gamescope/lib/pkgconfig
 
 modules:
+  - name: wayland
+    buildsystem: meson
+    config-opts:
+      - -Dtests=false
+      - -Ddocumentation=false
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/wayland/wayland/-/releases/1.23.0/downloads/wayland-1.23.0.tar.xz
+        sha256: 05b3e1574d3e67626b5974f862f36b5b427c7ceeb965cb36a4e6c2d342e45ab2
+        x-checker-data:
+          type: anitya
+          project-id: 10061
+          stable-only: true
+          url-template: https://gitlab.freedesktop.org/wayland/wayland/-/releases/$version/downloads/wayland-$version.tar.xz
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share
+
   - name: hwdata
     config-opts:
       - --datarootdir=${FLATPAK_DEST}/share
@@ -69,14 +89,12 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: cf2497fd7ec83f3d0dd5cb31b69540a2d129edad
-        tag: 3.14.24
+        commit: 250a14345faaa6e6b8331cf6979e3c54fe097023
+        tag: 3.15.0
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
           is-main-source: true
-          versions:
-            <=: 3.14.24
 
       # Keep stb tracking https://github.com/ValveSoftware/gamescope/blob/master/subprojects/stb.wrap
       - type: archive
