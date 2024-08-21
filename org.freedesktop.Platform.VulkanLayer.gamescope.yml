@@ -15,7 +15,6 @@ build-options:
   prepend-path: /usr/lib/extensions/vulkan/gamescope/bin
   prepend-ld-library-path: /usr/lib/extensions/vulkan/gamescope/lib
   prepend-pkg-config-path: /usr/lib/extensions/vulkan/gamescope/lib/pkgconfig
-  strip: true
 
 modules:
   - name: hwdata
