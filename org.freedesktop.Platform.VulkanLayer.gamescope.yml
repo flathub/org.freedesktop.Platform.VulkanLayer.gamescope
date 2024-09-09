@@ -1,7 +1,7 @@
 id: org.freedesktop.Platform.VulkanLayer.gamescope
-branch: '23.08'
+branch: '24.08'
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 build-extension: true
 separate-locales: false
@@ -42,24 +42,6 @@ modules:
   - modules/libseat.yml
   - modules/xwayland.yml
   - modules/libei.yml
-
-  - name: libavif
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DAVIF_LIBYUV=OFF
-    sources:
-      - type: git
-        url: https://github.com/AOMediaCodec/libavif.git
-        tag: v1.1.1
-        commit: bb24db03cd99befe09c87b602e36f24d75a980d1
-        x-checker-data:
-          type: anitya
-          project-id: 178015
-          tag-template: v$version
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /lib/cmake
 
   - name: gamescope
     buildsystem: meson
