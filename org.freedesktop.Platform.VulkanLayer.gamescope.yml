@@ -22,8 +22,8 @@ modules:
       - --datarootdir=${FLATPAK_DEST}/share
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/v0.385/hwdata-0.385.tar.gz
-        sha256: 577219d44d9686e8177f6291adbff7bacdd785ad4e8a8d0c4b2a14dbf850d6ac
+        url: https://github.com/vcrhonek/hwdata/archive/v0.389/hwdata-0.389.tar.gz
+        sha256: 34813e6821a5dab0f663a363026e4d17e880e5f5f2ed49244c42263b226ff98a
         x-checker-data:
           type: anitya
           project-id: 13577
@@ -154,8 +154,8 @@ modules:
           - -DCMAKE_CXX_FLAGS=
         sources:
           - type: archive
-            url: https://github.com/google/benchmark/archive/v1.9.0/benchmark-1.9.0.tar.gz
-            sha256: 35a77f46cc782b16fac8d3b107fbfbb37dcd645f7c28eee19f3b8e0758b48994
+            url: https://github.com/google/benchmark/archive/v1.9.1/benchmark-1.9.1.tar.gz
+            sha256: 32131c08ee31eeff2c8968d7e874f3cb648034377dfc32a4c377fa8796d84981
             x-checker-data:
               type: anitya
               project-id: 229361
