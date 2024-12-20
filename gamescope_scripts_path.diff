@@ -1,0 +1,12 @@
+diff --git a/src/Script/Script.cpp b/src/Script/Script.cpp
+index a104ee9..0717308 100644
+--- a/src/Script/Script.cpp
++++ b/src/Script/Script.cpp
+@@ -132,6 +132,7 @@ namespace gamescope
+         {
+             RunFolder( "/usr/share/gamescope/scripts", true );
+             RunFolder( "/etc/gamescope/scripts", true );
++            RunFolder( "/usr/lib/extensions/vulkan/gamescope/share/gamescope/scripts/", true );
+         }
+ 
+         if ( cv_script_use_user_scripts )

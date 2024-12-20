@@ -22,8 +22,8 @@ modules:
       - --datarootdir=${FLATPAK_DEST}/share
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/v0.385/hwdata-0.385.tar.gz
-        sha256: 577219d44d9686e8177f6291adbff7bacdd785ad4e8a8d0c4b2a14dbf850d6ac
+        url: https://github.com/vcrhonek/hwdata/archive/v0.390/hwdata-0.390.tar.gz
+        sha256: f10684093d2a7780de8a96d3dd8a2dd544ed6136dd359197750c42bb08ce526f
         x-checker-data:
           type: anitya
           project-id: 13577
@@ -34,6 +34,7 @@ modules:
       - install -m 644 ${FLATPAK_DEST}/share/pkgconfig/hwdata.pc ${FLATPAK_DEST}/lib/pkgconfig/
     cleanup:
       - /lib/pkgconfig
+      - /lib/modprobe.d
       - /share/aclocal
       - /share/pkgconfig
 
@@ -42,6 +43,27 @@ modules:
   - modules/libseat.yml
   - modules/xwayland.yml
   - modules/libei.yml
+  - shared-modules/luajit/luajit.json
+
+  - name: wayland-server
+    buildsystem: meson
+    config-opts:
+      - -Dtests=false
+      - -Ddocumentation=false
+      - -Ddtd_validation=false
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/wayland/wayland/-/archive/1.23.1/wayland-1.23.1.tar.gz
+        sha256: 158ec49af498f2558c7fbf7e8b070d010d4e270cc6076003a18a6c813f87e244
+        x-checker-data:
+          type: anitya
+          project-id: 10061
+          url-template: https://gitlab.freedesktop.org/wayland/wayland/-/archive/$version/wayland-$version.tar.gz
+    cleanup:
+      - /bin
+      - /share
+      - /include
+      - /lib/pkgconfig
 
   - name: libavif
     buildsystem: cmake-ninja
@@ -69,14 +91,14 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: cf2497fd7ec83f3d0dd5cb31b69540a2d129edad
-        tag: 3.14.24
+        commit: 4da5e4a37560f9b3c85af2679330f9ec292c8ee1
+        tag: 3.16.1
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
           is-main-source: true
-          versions:
-            <=: 3.14.24
+      - type: patch
+        path: gamescope_scripts_path.diff
 
       # Keep stb tracking https://github.com/ValveSoftware/gamescope/blob/master/subprojects/stb.wrap
       - type: archive
@@ -154,8 +176,8 @@ modules:
           - -DCMAKE_CXX_FLAGS=
         sources:
           - type: archive
-            url: https://github.com/google/benchmark/archive/v1.9.0/benchmark-1.9.0.tar.gz
-            sha256: 35a77f46cc782b16fac8d3b107fbfbb37dcd645f7c28eee19f3b8e0758b48994
+            url: https://github.com/google/benchmark/archive/v1.9.1/benchmark-1.9.1.tar.gz
+            sha256: 32131c08ee31eeff2c8968d7e874f3cb648034377dfc32a4c377fa8796d84981
             x-checker-data:
               type: anitya
               project-id: 229361
