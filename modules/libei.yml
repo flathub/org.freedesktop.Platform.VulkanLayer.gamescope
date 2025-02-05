@@ -8,8 +8,8 @@ config-opts:
   - -Dliboeffis=disabled
 sources:
   - type: archive
-    url: https://gitlab.freedesktop.org/libinput/libei/-/archive/1.3.0/libei-1.3.0.tar.gz
-    sha256: 162dc7b0d86a4575cdde1d3cb04f364f89a8b1ba6d95fe0b442564e0444d851d
+    url: https://gitlab.freedesktop.org/libinput/libei/-/archive/1.3.901/libei-1.3.901.tar.gz
+    sha256: a113d28f9d2a3d9ad1dca5aab453de0c89aaafe0bd0daf309e2f165c4b1b1a27
     x-checker-data:
       type: anitya
       project-id: 350087
