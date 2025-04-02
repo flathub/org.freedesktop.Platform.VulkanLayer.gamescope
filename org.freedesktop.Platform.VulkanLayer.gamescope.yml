@@ -22,8 +22,8 @@ modules:
       - --datarootdir=${FLATPAK_DEST}/share
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/v0.392/hwdata-0.392.tar.gz
-        sha256: 1f472d8f2ec824d4efe6a75480767c4ce240fa5d91b6428d9f8775035da3ba1f
+        url: https://github.com/vcrhonek/hwdata/archive/v0.394/hwdata-0.394.tar.gz
+        sha256: b7c3fd7214a3b7c49d2661db127a712dc11cffd1799f793947aa1cb20aaf3298
         x-checker-data:
           type: anitya
           project-id: 13577
@@ -53,14 +53,12 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: 2ccfa53b619d43d7a08f2457474f471552b7e6fb
-        tag: 3.16.2
+        commit: f1f105b3a95b4fec5c92e8a10e6927cbb76fe804
+        tag: 3.16.3
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
           is-main-source: true
-      - type: patch
-        path: gamescope_scripts_path.diff
 
       # Keep stb tracking https://github.com/ValveSoftware/gamescope/blob/master/subprojects/stb.wrap
       - type: archive
@@ -138,8 +136,8 @@ modules:
           - -DCMAKE_CXX_FLAGS=
         sources:
           - type: archive
-            url: https://github.com/google/benchmark/archive/v1.9.1/benchmark-1.9.1.tar.gz
-            sha256: 32131c08ee31eeff2c8968d7e874f3cb648034377dfc32a4c377fa8796d84981
+            url: https://github.com/google/benchmark/archive/v1.9.2/benchmark-1.9.2.tar.gz
+            sha256: 409075176168dc46bbb81b74c1b4b6900385b5d16bfc181d678afb060d928bd3
             x-checker-data:
               type: anitya
               project-id: 229361
