@@ -22,8 +22,8 @@ modules:
       - --datarootdir=${FLATPAK_DEST}/share
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/v0.394/hwdata-0.394.tar.gz
-        sha256: b7c3fd7214a3b7c49d2661db127a712dc11cffd1799f793947aa1cb20aaf3298
+        url: https://github.com/vcrhonek/hwdata/archive/v0.395/hwdata-0.395.tar.gz
+        sha256: 1166f733c57afa82cfdad56e62ef044835fbc8c99ef65f033e6a5802716b5c66
         x-checker-data:
           type: anitya
           project-id: 13577
@@ -53,8 +53,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: 1ab8009d5dc5faaff5d890ef896483ef14363536
-        tag: 3.16.4
+        commit: 86593661540b5df4d7395e6d92c6e0d3b996d9ba
+        tag: 3.16.8
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -136,8 +136,8 @@ modules:
           - -DCMAKE_CXX_FLAGS=
         sources:
           - type: archive
-            url: https://github.com/google/benchmark/archive/v1.9.2/benchmark-1.9.2.tar.gz
-            sha256: 409075176168dc46bbb81b74c1b4b6900385b5d16bfc181d678afb060d928bd3
+            url: https://github.com/google/benchmark/archive/v1.9.3/benchmark-1.9.3.tar.gz
+            sha256: b94263b018042007eb53f79639f21ae47800808c73cf1b7df85622b6e2b1aa32
             x-checker-data:
               type: anitya
               project-id: 229361
