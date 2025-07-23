@@ -1,0 +1,21 @@
+diff --git a/src/Backends/WaylandBackend.cpp b/src/Backends/WaylandBackend.cpp
+index 664ed0e..0da0559 100644
+--- a/src/Backends/WaylandBackend.cpp
++++ b/src/Backends/WaylandBackend.cpp
+@@ -2476,6 +2476,8 @@ namespace gamescope
+         {
+             m_pWPColorManager = (wp_color_manager_v1 *)wl_registry_bind( pRegistry, uName, &wp_color_manager_v1_interface, 1u );
+             wp_color_manager_v1_add_listener( m_pWPColorManager, &s_WPColorManagerListener, this );
++            // poll for feature events
++            wl_display_roundtrip( GetDisplay() );
+ 
+             // HDR10.
+             {
+@@ -2486,6 +2488,7 @@ namespace gamescope
+             }
+ 
+             // scRGB
++            if ( Algorithm::Contains( m_WPColorManagerFeatures.eFeatures, WP_COLOR_MANAGER_V1_FEATURE_WINDOWS_SCRGB ) )
+             {
+                 m_pWPImageDescriptions[ GAMESCOPE_APP_TEXTURE_COLORSPACE_SCRGB ] = wp_color_manager_v1_create_windows_scrgb( m_pWPColorManager );
+             }
