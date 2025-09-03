@@ -9,8 +9,8 @@ config-opts:
   - -Dzshcompletiondir=no
 sources:
   - type: archive
-    url: https://gitlab.freedesktop.org/libinput/libinput/-/archive/1.29.0/libinput-1.29.0.tar.gz
-    sha256: ec71f6ec6632108a62756f49d86e864494108e70cf670e85f8b7579e970e152c
+    url: https://gitlab.freedesktop.org/libinput/libinput/-/archive/1.29.1/libinput-1.29.1.tar.gz
+    sha256: 98bb615d98ddc4607bddb13a7b7550d129eb8cd16f86cd5ca090207bc46b488b
     x-checker-data:
       type: anitya
       project-id: 5781
