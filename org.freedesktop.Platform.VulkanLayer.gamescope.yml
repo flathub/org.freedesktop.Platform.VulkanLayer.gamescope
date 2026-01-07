@@ -26,7 +26,7 @@ modules:
         sha256: e390fe2f5f5ef7ed9ccbe62eb7cd40d4ee2b57389e7869c0dc96433c81812e7a
         x-checker-data:
           type: anitya
-          project-id: 13577
+          project-id: 5387
           stable-only: true
           url-template: https://github.com/vcrhonek/hwdata/archive/v$version/hwdata-$version.tar.gz
     post-install:
