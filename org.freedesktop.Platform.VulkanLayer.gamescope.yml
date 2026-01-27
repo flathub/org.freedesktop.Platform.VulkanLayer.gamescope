@@ -120,7 +120,7 @@ modules:
           - /share
           - /lib/pkgconfig
 
-      - name: benchmark
+      - name: google-benchmark
         buildsystem: cmake-ninja
         config-opts:
           - -DBENCHMARK_ENABLE_GTEST_TESTS=OFF
@@ -128,12 +128,12 @@ modules:
           - -DCMAKE_CXX_FLAGS=
         sources:
           - type: archive
-            url: https://github.com/google/benchmark/archive/v1.9.4/benchmark-1.9.4.tar.gz
+            url: https://github.com/google/benchmark/archive/v1.9.4/google-benchmark-1.9.4.tar.gz
             sha256: b334658edd35efcf06a99d9be21e4e93e092bd5f95074c1673d5c8705d95c104
             x-checker-data:
               type: anitya
-              project-id: 229361
-              url-template: https://github.com/google/benchmark/archive/v$version/benchmark-$version.tar.gz
+              project-id: 18299
+              url-template: https://github.com/google/benchmark/archive/v$version/google-benchmark-$version.tar.gz
         cleanup:
           - /include
           - /lib/*.a
