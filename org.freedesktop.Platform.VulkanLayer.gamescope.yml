@@ -95,6 +95,9 @@ modules:
           # As we download subprojects outside of meson we must apply gamescopes packagefiles (add meson.build to them)
           - meson subprojects packagefiles --apply
 
+      - type: patch
+        path: gamescope_wlroots_libinput.diff
+
     cleanup:
       - /include
       - /lib/pkgconfig
