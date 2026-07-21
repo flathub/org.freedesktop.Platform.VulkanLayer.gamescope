@@ -4,8 +4,8 @@ config-opts:
   - -Dsecure-rpc=false
 sources:
   - type: archive
-    url: https://xorg.freedesktop.org/archive/individual/xserver/xwayland-24.1.12.tar.xz
-    sha256: 6df02c511b92c1b9848734d9d1b03a4c24f8375ba3cada44e9684a21b5f78e21
+    url: https://xorg.freedesktop.org/archive/individual/xserver/xwayland-24.1.13.tar.xz
+    sha256: 173aea3d6f79609164c04528e1c8e4c9b60fcd59391c3c9dad4667297d727fb6
     x-checker-data:
       type: anitya
       project-id: 180949
@@ -71,8 +71,8 @@ modules:
       - --disable-static
     sources:
       - type: archive
-        url: https://xorg.freedesktop.org/releases/individual/lib/libXfont2-2.0.7.tar.xz
-        sha256: 8b7b82fdeba48769b69433e8e3fbb984a5f6bf368b0d5f47abeec49de3e58efb
+        url: https://xorg.freedesktop.org/releases/individual/lib/libXfont2-2.0.8.tar.xz
+        sha256: f556c0e1093a4e6911cc90bc4b106d201902ee187fd74af206ff162f7e6a24d5
         x-checker-data:
           type: anitya
           project-id: 17165
