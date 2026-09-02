@@ -1,7 +1,7 @@
 id: org.freedesktop.Platform.VulkanLayer.gamescope
-branch: '25.08'
+branch: '26.08'
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 build-extension: true
 separate-locales: false
@@ -17,27 +17,6 @@ build-options:
   prepend-pkg-config-path: /usr/lib/extensions/vulkan/gamescope/lib/pkgconfig
 
 modules:
-  - name: hwdata
-    config-opts:
-      - --datarootdir=${FLATPAK_DEST}/share
-    sources:
-      - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/v0.410/hwdata-0.410.tar.gz
-        sha256: 2864b061b179b8ad8cb6a7339ca07678240a183d9cedce8677a4950acaf798e0
-        x-checker-data:
-          type: anitya
-          project-id: 5387
-          stable-only: true
-          url-template: https://github.com/vcrhonek/hwdata/archive/v$version/hwdata-$version.tar.gz
-    post-install:
-      - mkdir -p -m 755 ${FLATPAK_DEST}/lib/pkgconfig
-      - install -m 644 ${FLATPAK_DEST}/share/pkgconfig/hwdata.pc ${FLATPAK_DEST}/lib/pkgconfig/
-    cleanup:
-      - /lib/pkgconfig
-      - /lib/modprobe.d
-      - /share/aclocal
-      - /share/pkgconfig
-
   - modules/libevdev.yml
   - modules/libinput.yml
   - modules/libseat.yml
@@ -122,7 +101,7 @@ modules:
           - /share
           - /lib/pkgconfig
 
-      # Used to build gamescope benchwarks
+      # Used to build gamescope benchmarks
       - name: google-benchmark
         disabled: true
         buildsystem: cmake-ninja
