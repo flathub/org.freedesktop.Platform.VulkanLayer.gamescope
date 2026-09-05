@@ -22,8 +22,8 @@ modules:
       - --datarootdir=${FLATPAK_DEST}/share
     sources:
       - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/v0.410/hwdata-0.410.tar.gz
-        sha256: 2864b061b179b8ad8cb6a7339ca07678240a183d9cedce8677a4950acaf798e0
+        url: https://github.com/vcrhonek/hwdata/archive/v0.411/hwdata-0.411.tar.gz
+        sha256: d75462181fbd307228e0a48b8d1449f1773ea4b1f17e8a1d56346907f999ce33
         x-checker-data:
           type: anitya
           project-id: 5387
