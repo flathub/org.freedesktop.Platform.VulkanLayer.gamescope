@@ -15,9 +15,14 @@ This gamescope extension takes advantage of the above, and adds gamescope and it
 
 ### Notes
 
-Here, we include a script that automatically adds the appropriate paths, so all you need to do is add `/usr/lib/extensions/vulkan/gamescope/bin` to your Flatpak's PATH variable (`--env=PATH=$PATH:/usr/lib/extensions/vulkan/gamescope/bin`).
+The `com.valvesoftware.Steam` flatpak package has a wrapper script that adds `/usr/lib/extensions/vulkan/*/bin` to the `PATH` environment variable, meaning it can be used by setting the games "Launch Options" setting to `gamescope -- %command%`. Due to the sandboxing used by steam this only works when using "Steam Play" compatibility tools packaged specifically for flatpak for example [`com.valvesoftware.Steam.CompatibilityTool.Proton-GE`](https://github.com/flathub/com.valvesoftware.Steam.CompatibilityTool.Proton-GE/pulls) which disables this sandbox.
 
-The script is named `gamescope`, so it should be a drop-in replacement. 
+For packages that don't automatically add gamescope to the `PATH` it can be done manually. Please note that adding the argument `--env=PATH=$PATH:/usr/lib/extensions/vulkan/gamescope/bin` set the internal flatpak `PATH` to the value of the external hosts `PATH` with the gamescope path appended to it. Instead take the following command-line as an example to adapt to your needs:
+```bash
+flatpak run --device=dri --socket=wayland --nosocket=x11 --command=bash org.gtk.Demo4 -c "env PATH=\${PATH}:/usr/lib/extensions/vulkan/gamescope/bin gamescope --mangoapp -- env WAYLAND_DISPLAY='' /app/bin/gtk4-demo"
+```
+
+The `bin/gamescope` file is a script that sets the `LD_LIBRARY_PATH` and `PATH` to point to this packages dependencies and launches the true gamescope binary at `bin/gamescope-brokey`.
 
 It should also be noted that this extension introduces a couple of shared libraries that will possibly conflict with those provided by an application, if it does packages the same libraries.
 This includes, but is not limited to, `libevdev`, `libfontenc`, `libinput`, `libliftoff`, `libmtdev`, `libseat`, `libwlroots`, `libxcvt`, `libXfont2`, and `libXRes`.
