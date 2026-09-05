@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        branch: [ branch/24.08, branch/25.08 ] # list all branches to check
+        branch: [ branch/25.08, branch/26.08 ] # list all branches to check
 
     steps:
       - uses: actions/checkout@v3
