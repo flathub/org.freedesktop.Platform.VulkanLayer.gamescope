@@ -33,8 +33,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ValveSoftware/gamescope.git
-        commit: ad2763da1c48860f649abfe842a087188dcb6e20
-        tag: 3.16.30
+        commit: 6867f509874f9bc52e12d6f4c4596cdf0d5be6b4
+        tag: 3.16.31
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
