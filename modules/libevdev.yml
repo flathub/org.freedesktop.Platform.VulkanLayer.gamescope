@@ -5,8 +5,8 @@ config-opts:
   - -Ddocumentation=disabled
 sources:
   - type: archive
-    url: https://www.freedesktop.org/software/libevdev/libevdev-1.13.7.tar.xz
-    sha256: 0caf824971108f15bb2ad356433bae198d7d3bf1e82d43f63626e069e060bfa6
+    url: https://www.freedesktop.org/software/libevdev/libevdev-1.14.0.tar.xz
+    sha256: 5a0966c7110648665983848bad696c7acba614a2160d2865d535397101007332
     x-checker-data:
       type: anitya
       project-id: 20540
