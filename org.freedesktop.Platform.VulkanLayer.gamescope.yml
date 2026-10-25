@@ -60,6 +60,7 @@ modules:
           type: git
           tag-pattern: ^([\d.]+)$
           is-main-source: true
+          versions: '> 3.17.0'
 
       # Keep stb tracking https://github.com/ValveSoftware/gamescope/blob/master/subprojects/stb.wrap
       - type: archive
