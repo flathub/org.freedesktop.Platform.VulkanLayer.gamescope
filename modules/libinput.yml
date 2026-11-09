@@ -9,8 +9,8 @@ config-opts:
   - -Dzshcompletiondir=no
 sources:
   - type: archive
-    url: https://gitlab.freedesktop.org/libinput/libinput/-/archive/1.25.0/libinput-1.25.0.tar.gz
-    sha256: f7e8425f185cadba5761d0a1dae6be041750d351163ffa04adc5b9a79a13c0ec
+    url: https://gitlab.freedesktop.org/libinput/libinput/-/archive/1.32.0/libinput-1.32.0.tar.gz
+    sha256: 7dd6c1ca964c86eb6810ccd6639cda634e68bdca43bf3afec39e94e942fac8d4
     x-checker-data:
       type: anitya
       project-id: 5781
@@ -31,8 +31,8 @@ modules:
       - --disable-static
     sources:
       - type: archive
-        url: https://bitmath.org/code/mtdev/mtdev-1.1.6.tar.bz2
-        sha256: 15d7b28da8ac71d8bc8c9287c2045fd174267bc740bec10cfda332dc1204e0e0
+        url: https://bitmath.org/code/mtdev/mtdev-1.1.7.tar.bz2
+        sha256: a107adad2101fecac54ac7f9f0e0a0dd155d954193da55c2340c97f2ff1d814e
         x-checker-data:
           type: anitya
           project-id: 8868
