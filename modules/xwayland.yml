@@ -4,8 +4,8 @@ config-opts:
   - -Dsecure-rpc=false
 sources:
   - type: archive
-    url: https://xorg.freedesktop.org/archive/individual/xserver/xwayland-24.1.6.tar.xz
-    sha256: 737e612ca36bbdf415a911644eb7592cf9389846847b47fa46dc705bd754d2d7
+    url: https://xorg.freedesktop.org/archive/individual/xserver/xwayland-24.1.14.tar.xz
+    sha256: 4eb6b98d678299a4b96138d886345b294130695760345ef84596225a8224078a
     x-checker-data:
       type: anitya
       project-id: 180949
@@ -20,8 +20,8 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://xorg.freedesktop.org/releases/individual/font/font-util-1.4.1.tar.xz
-        sha256: 5c9f64123c194b150fee89049991687386e6ff36ef2af7b80ba53efaf368cc95
+        url: https://xorg.freedesktop.org/releases/individual/font/font-util-1.4.2.tar.xz
+        sha256: 02e4f8afdcf03cc8372ca9c37aa104b1e36b47722dbc79531be08f0a4c622999
         x-checker-data:
           type: anitya
           project-id: 15055
@@ -35,8 +35,8 @@ modules:
       - --disable-static
     sources:
       - type: archive
-        url: https://xorg.freedesktop.org/releases/individual/lib/libXres-1.2.2.tar.gz
-        sha256: 8abce597ced4a7ab89032aee91f6f784d9960adc772b2b59f17e515cd4127950
+        url: https://xorg.freedesktop.org/releases/individual/lib/libXres-1.2.3.tar.gz
+        sha256: e1ee4845aa6a59e6ba7145422279ffc7da521b4d3dd302c0b1febdf45d06d093
         x-checker-data:
           type: anitya
           project-id: 1790
@@ -71,8 +71,8 @@ modules:
       - --disable-static
     sources:
       - type: archive
-        url: https://xorg.freedesktop.org/releases/individual/lib/libXfont2-2.0.7.tar.xz
-        sha256: 8b7b82fdeba48769b69433e8e3fbb984a5f6bf368b0d5f47abeec49de3e58efb
+        url: https://xorg.freedesktop.org/releases/individual/lib/libXfont2-2.0.9.tar.xz
+        sha256: f042a370666815e7b941e9b7019024755bd1c6c2954afbfa515af378251799e2
         x-checker-data:
           type: anitya
           project-id: 17165
@@ -90,8 +90,8 @@ modules:
           - --disable-static
         sources:
           - type: archive
-            url: https://xorg.freedesktop.org/releases/individual/lib/libfontenc-1.1.8.tar.xz
-            sha256: 7b02c3d405236e0d86806b1de9d6868fe60c313628b38350b032914aa4fd14c6
+            url: https://xorg.freedesktop.org/releases/individual/lib/libfontenc-1.1.9.tar.xz
+            sha256: 9d8392705cb10803d5fe1d27d236cbab3f664e26841ce01916bbbe430cf273e2
             x-checker-data:
               type: anitya
               project-id: 1613
