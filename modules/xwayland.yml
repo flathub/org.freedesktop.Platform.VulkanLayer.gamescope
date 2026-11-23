@@ -4,8 +4,8 @@ config-opts:
   - -Dsecure-rpc=false
 sources:
   - type: archive
-    url: https://xorg.freedesktop.org/archive/individual/xserver/xwayland-24.1.14.tar.xz
-    sha256: 4eb6b98d678299a4b96138d886345b294130695760345ef84596225a8224078a
+    url: https://xorg.freedesktop.org/archive/individual/xserver/xwayland-24.1.15.tar.xz
+    sha256: 7311b4bcda22cfc19cb99680eb1c35cfc1ea885981310639f0429fe2948c122e
     x-checker-data:
       type: anitya
       project-id: 180949
@@ -71,8 +71,8 @@ modules:
       - --disable-static
     sources:
       - type: archive
-        url: https://xorg.freedesktop.org/releases/individual/lib/libXfont2-2.0.9.tar.xz
-        sha256: f042a370666815e7b941e9b7019024755bd1c6c2954afbfa515af378251799e2
+        url: https://xorg.freedesktop.org/releases/individual/lib/libXfont2-2.0.10.tar.xz
+        sha256: cef1f4ad9cd69f439bb1ac484bdc8f9d7f8e70215b92d8ca86b96e31513e5f9c
         x-checker-data:
           type: anitya
           project-id: 17165
@@ -90,8 +90,8 @@ modules:
           - --disable-static
         sources:
           - type: archive
-            url: https://xorg.freedesktop.org/releases/individual/lib/libfontenc-1.1.9.tar.xz
-            sha256: 9d8392705cb10803d5fe1d27d236cbab3f664e26841ce01916bbbe430cf273e2
+            url: https://xorg.freedesktop.org/releases/individual/lib/libfontenc-1.1.10.tar.xz
+            sha256: daa186a49e3cc2b6fc585ca09971351e6f010f618abc6a164eda82e42e4aa4d6
             x-checker-data:
               type: anitya
               project-id: 1613
